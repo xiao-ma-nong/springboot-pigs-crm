@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pigs.springbootpigscrm.mapper.DepartmentMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.pigs.springbootpigscrm.entity.Department">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        name
+    </sql>
+
+    <!--   查询 部门列表  -->
+    <select id="queryEmployeeList" resultType="com.pigs.springbootpigscrm.entity.Department"
+            parameterType="java.util.Map">
+
+        select id,department_name,create_time,update_time,state from department
+        <where>
+
+            <if test="map.departmentName!=null">
+                and department_name like
+                concat('%',#{map.departmentName},'%')
+            </if>
+
+            <if test="map.startTime!=null&amp;&amp;startTime!=&quot;&quot;&amp;&amp;endTime!=null&amp;&amp;endTime!=&quot;&quot;">
+                create_time between #{map.startTime} and #{map.endTime}
+            </if>
+
+        </where>
+
+    </select>
+
+</mapper>

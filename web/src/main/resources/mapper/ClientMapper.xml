@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pigs.springbootpigscrm.mapper.ClientMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.pigs.springbootpigscrm.entity.Client">
+        <result column="id" property="id"/>
+        <result column="client_name" property="clientName"/>
+        <result column="sex" property="sex"/>
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime"/>
+        <result column="user_password" property="userPassword"/>
+        <result column="salt" property="salt"/>
+        <result column="is_orders" property="isOrders"/>
+        <result column="phone_number" property="phoneNumber"/>
+        <result column="address" property="address"/>
+
+
+        <!-- 员工表 映射-->
+        <collection property="employee" javaType="com.pigs.springbootpigscrm.entity.Employee">
+            <result column="id" property="id"/>
+            <result column="name" property="name"/>
+            <result column="password" property="password"/>
+            <result column="sex" property="sex"/>
+            <result column="phone" property="phone"/>
+            <result column="create_time" property="createTime"/>
+            <result column="update_time" property="updateTime"/>
+            <result column="state" property="state"/>
+            <result column="salt" property="salt"/>
+            <result column="image" property="image"/>
+        </collection>
+
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        name, user_sex, status, create_time, user_password, salt, is_orders
+    </sql>
+
+    <!--   查询 客户 列表  -->
+    <select id="queryClientList" resultMap="BaseResultMap"
+            parameterType="java.util.Map">
+
+        select
+        client.id,client.client_name,client.sex,client.status,client.create_time,client.create_time,client.is_orders,client.phone_number,client.address,employee.name
+        from client
+        left join employee_client_ref on employee_client_ref.client_id=client.id
+        left join employee on employee_client_ref.employee_id=employee.id
+
+        <where>
+
+            <if test="map.clientName!=null">
+                and client.name like
+                concat('%',#{map.clientName},'%')
+            </if>
+
+            <if test="map.startTime!=null&amp;&amp;startTime!=&quot;&quot;&amp;&amp;endTime!=null&amp;&amp;endTime!=&quot;&quot;">
+                create_time between #{map.startTime} and #{map.endTime}
+            </if>
+
+        </where>
+
+    </select>
+
+</mapper>

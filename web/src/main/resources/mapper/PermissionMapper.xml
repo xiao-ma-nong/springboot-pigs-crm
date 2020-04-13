@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pigs.springbootpigscrm.mapper.PermissionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.pigs.springbootpigscrm.entity.Permission">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="permission" property="permission"/>
+        <result column="url" property="url"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="state" property="state"/>
+
+        <!-- 角色 表映射 role-->
+        <collection property="role" javaType="com.pigs.springbootpigscrm.entity.Role">
+            <id column="id" property="id"/>
+            <result column="role" property="role"/>
+        </collection>
+
+    </resultMap>
+
+
+    <select id="queryPermissionList" resultMap="BaseResultMap" parameterType="java.util.Map">
+        select
+        permission.id,permission.name,permission.permission,permission.url,role.role,permission.create_time,permission.update_time,permission.state
+        from permission
+        left join permission_role_ref on permission_role_ref.permission_id=permission.id
+        left join role on role.id = permission_role_ref.role_id
+        <where>
+
+            <if test="map.name!=null">
+                and permission.name like
+                concat('%',#{map.name},'%')
+            </if>
+
+            <if test="map.role!=null">
+                and role.role like
+                concat('%',#{map.role},'%')
+            </if>
+
+            <if test="map.startTime!=null&amp;&amp;startTime!=&quot;&quot;&amp;&amp;endTime!=null&amp;&amp;endTime!=&quot;&quot;">
+                create_time between #{map.startTime} and #{map.endTime}
+            </if>
+
+        </where>
+
+    </select>
+
+</mapper>

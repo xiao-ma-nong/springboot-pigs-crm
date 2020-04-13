@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>首页--PIGS后台管理系统</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_tnyc012u2rlwstt9.css" media="all"/>
+    <link rel="stylesheet" href="../css/main.css" media="all"/>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="childrenBody">
+<div class="panel_box row">
+
+
+    <div class="panel col">
+        <a href="javascript:;" data-url="page/user/allUsers.html" style="background-color:#33cabb;" >
+            <div class="panel_icon" style="background-color:#33cabb">
+                <i class="layui-icon" data-icon="&#xe65e;">&#xe65e;</i>
+            </div>
+
+            <div class="panel_word userAll">
+                <cite>今日收入</cite>
+                <span></span>
+            </div>
+        </a>
+    </div>
+
+    <div class="panel col">
+        <a href="javascript:;" data-url="page/user/allUsers.html" style="background-color:#f96868">
+            <div class="panel_icon" style="background-color:#f96868">
+                <i class="layui-icon" data-icon="&#xe613;">&#xe613;</i>
+            </div>
+            <div class="panel_word userAll">
+                <cite>新增用户</cite>
+                <span></span>
+
+            </div>
+        </a>
+    </div>
+
+    <div class="panel col">
+        <a href="javascript:;" data-url="page/news/newsList.html" style="background-color:#F7B824;">
+            <div class="panel_icon" style="background-color:#F7B824;">
+                <i><img src="../images/shipments.png"></i>
+            </div>
+            <div class="panel_word waitNews">
+                <cite>待发货</cite>
+                <span></span>
+
+            </div>
+        </a>
+    </div>
+    <div class="panel col">
+        <a href="javascript:;" data-url="page/news/newsList.html" style="background-color:#15c377;">
+            <div class="panel_icon" style="background-color:#15c377;">
+                <i><img src="../images/browse.png"></i>
+            </div>
+            <div class="panel_word visitTimes">
+                <cite>总浏览次数</cite>
+                <span></span>
+
+            </div>
+        </a>
+    </div>
+
+    <div class="panel col">
+        <a href="javascript:;" data-url="page/message/message.html" style="background-color: #926dde">
+            <div class="panel_icon" style="background-color: #926dde">
+                <i class="layui-icon" data-icon="&#xe63a;">&#xe63a;</i>
+            </div>
+            <div class="panel_word newMessage">
+                <cite>新增留言</cite>
+                <span></span>
+            </div>
+        </a>
+    </div>
+
+
+</div>
+
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header"><h4>用户活跃</h4></div>
+            <div class="card-body">
+                <canvas id="chart-line-4" width="400" height="250"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header"><h4>服务器资源</h4></div>
+            <div class="card-body">
+                <canvas id="chart-hbar-1" width="400" height="250"></canvas>
+            </div>
+        </div>
+    </div>
+
+</div>
+<hr/>
+<div class="row">
+
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <h4>每周用户</h4>
+            </div>
+            <div class="card-body">
+                <canvas class="js-chartjs-bars"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="card-header"><h4>系统基本参数</h4></div>
+        <br/>
+        <div class="card-body">
+
+            <table class="layui-table">
+
+                <tbody>
+                <tr>
+                    <td>系统名称</td>
+                    <td class="systemName"></td>
+                </tr>
+                <tr>
+                    <td>当前版本</td>
+                    <td class="version"></td>
+                </tr>
+                <tr>
+                    <td>开发作者</td>
+                    <td class="author"></td>
+                </tr>
+                <tr>
+                    <td>网站首页</td>
+                    <td class="homePage"></td>
+                </tr>
+                <tr>
+                    <td>服务器环境</td>
+                    <td class="server"></td>
+                </tr>
+                <tr>
+                    <td>当前用户权限</td>
+                    <td class="userRights"></td>
+                </tr>
+                <tr>
+                    <td>默认关键字</td>
+                    <td class="keywords"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+<hr/>
+<div class="row">
+
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4>交易历史记录</h4>
+            </div>
+            <div class="card-body">
+                <canvas class="js-chartjs-lines"></canvas>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="../layui/layui.js"></script>
+<script type="text/javascript" src="../js/main.js"></script>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+
+<!--图表插件 数据分析   -->
+<script type="text/javascript" src="../js/Chart.js"></script>
+<script type="text/javascript">
+
+    <!--    活跃用户 于 潜伏用户    -->
+    new Chart($("#chart-line-4"), {
+        type: 'line',
+        data: {
+            labels: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+            datasets: [{
+                label: "活跃",
+                fill: false,
+                borderWidth: 3,
+                pointRadius: 4,
+                borderColor: "#36a2eb",
+                backgroundColor: "#36a2eb",
+                pointBackgroundColor: "#36a2eb",
+                pointBorderColor: "#36a2eb",
+                pointHoverBackgroundColor: "#fff",
+                pointHoverBorderColor: "#36a2eb",
+                data: [30, 25, 35, 23]
+            },
+                {
+                    label: "潜伏",
+                    fill: false,
+                    borderWidth: 3,
+                    pointRadius: 4,
+                    borderColor: "#ff6384",
+                    backgroundColor: "#ff6384",
+                    pointBackgroundColor: "#ff6384",
+                    pointBorderColor: "#ff6384",
+                    pointHoverBackgroundColor: "#fff",
+                    pointHoverBorderColor: "#ff6384",
+                    data: [23, 29, 30, 33]
+                }]
+        },
+        options: {}
+    });
+
+    /* *
+     *
+     * 服务器资源使用
+     *
+     * */
+    new Chart($("#chart-hbar-1"), {
+        type: 'horizontalBar',
+        data: {
+            labels: ["内存", "磁盘", "网络", "CPU"],
+            datasets: [{
+                label: " % 利用率",
+                backgroundColor: "rgba(51,202,185,0.5)",
+                borderColor: "rgba(0,0,0,0)",
+                hoverBackgroundColor: "rgba(51,202,185,0.7)",
+                hoverBorderColor: "rgba(0,0,0,0)",
+                data: [10, 56, 15, 64]
+            }]
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+
+    $(document).ready(function (e) {
+        /* *
+         *
+        *  每周注册用户
+        *
+        * */
+        var $dashChartBarsCnt = jQuery('.js-chartjs-bars')[0].getContext('2d'),
+            $dashChartLinesCnt = jQuery('.js-chartjs-lines')[0].getContext('2d');
+
+        var $dashChartBarsData = {
+            labels: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+            datasets: [{
+                label: '注册用户',
+                borderWidth: 1,
+                borderColor: 'rgba(0,0,0,0)',
+                backgroundColor: 'rgba(51,202,185,0.5)',
+                hoverBackgroundColor: "rgba(51,202,185,0.7)",
+                hoverBorderColor: "rgba(0,0,0,0)",
+                data: [0, 0, 0, 0, 0, 0, 1]
+            }]
+        };
+
+
+        /* *
+          *
+          * 年度交易
+          *
+         */
+        var $dashChartLinesData = {
+            labels: ['2019', '2020'],
+            datasets: [{
+                label: '年度交易资金',
+                data: [0, 0],
+                borderColor: '#358ed7',
+                backgroundColor: 'rgba(53, 142, 215, 0.175)',
+                borderWidth: 1,
+                fill: false,
+                lineTension: 0.5
+            }]
+        };
+
+        new Chart($dashChartBarsCnt, {
+            type: 'bar',
+            data: $dashChartBarsData
+        });
+
+        var myLineChart = new Chart($dashChartLinesCnt, {
+            type: 'line',
+            data: $dashChartLinesData,
+        });
+    });
+</script>
+
+</body>
+
+
+</html>

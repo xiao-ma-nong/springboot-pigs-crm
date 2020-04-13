@@ -26,13 +26,14 @@
 
     <dependencies>
 
-        <!-- mybatisPlus 核心库 aaa-->
+        <!-- mybatisPlus 核心库-->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>3.0.6</version>
         </dependency>
 
+        <!--    mysql    -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -167,7 +168,6 @@
             </exclusions>
         </dependency>
     </dependencies>
-
 
 
 </project>

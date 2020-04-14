@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>PIGS-CRM后台管理系统</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="stylesheet" href="../../layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="../../../login/layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="../../css/login.css" media="all"/>
+    <link rel="icon" href="../../ico/pigsLogo.ico">
+
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body class="signin">
+<div class="login">
+
+    <h1>PIGS-SYSTEM-LOGIN</h1>
+
+    <form class="layui-form" id="form">
+        <div class="layui-form-item">
+            <input class="layui-input errHint" value="猪农aaaaaaaaaaa" id="adminName" name="username" placeholder="用户名"
+                   lay-verify="required" maxlength="20"
+                   type="text"
+                   autocomplete="off">
+        </div>
+        <div class="layui-form-item">
+            <input class="layui-input errHint" value="1003" id="adminPass" name="password" placeholder="密码"
+                   lay-verify="required" maxlength="20"
+                   type="password"
+                   autocomplete="off">
+        </div>
+
+        <div class="layui-form-item form_code ">
+            <input class="layui-input input-val errHint" name="code" placeholder="验证码" lay-verify="required" type="text"
+                   maxlength="4"
+                   autocomplete="off" style="width: 62.1%;">
+            <div class="code">
+                &nbsp;
+                <canvas id="canvas" width="100" height="36"></canvas>
+            </div>
+        </div>
+        <a class="layui-btn login_btn loginBtn loginBtnThis" id="loginBtn" lay-submit=""
+           style="background-color: #33cabb" lay-filter="login">登录
+            <span id="icon"></span></a>
+    </form>
+
+
+</div>
+
+<script type="text/javascript" src="../../../login/layui/layui.js"></script>
+
+<script type="text/javascript" src="../../js/jquery.min.js"></script>
+<!--消息提示-->
+<script type="text/javascript" src="../../js/bootstrap-notify.min.js"></script>
+<script type="text/javascript" src="../../js/lightyear.js"></script>
+
+<script src="../../../login/js/login.js" type="text/javascript"></script>
+
+</body>
+</html>

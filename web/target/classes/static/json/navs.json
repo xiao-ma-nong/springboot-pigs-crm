@@ -1,0 +1,76 @@
+[
+  {
+    "title": "后台首页",
+    "icon": "icon-computer",
+    "href": "page/main.html",
+    "spread": false
+  },
+
+  {
+    "title": "员工列表",
+    "icon": "&#xe613;",
+    "href": "",
+    "spread": false,
+    "children": [
+      {
+        "title": "员工管理",
+        "icon": "&#xe612;",
+        "href": "page/employee/employeeList.html",
+        "spread": false
+      },
+      {
+        "title": "部门管理",
+        "icon": "&#xe857;",
+        "href": "page/employee/department/departmentList.html",
+        "spread": false
+      },
+      {
+        "title": "角色管理",
+        "icon": "&#xe6c9;",
+        "href": "page/employee/role/roleList.html",
+        "spread": false
+      },
+      {
+        "title": "权限管理",
+        "icon": "&#xe672;",
+        "href": "page/employee/permission/permissionList.html",
+        "spread": false
+      }
+    ]
+  },
+
+  {
+    "title": "客户列表",
+    "icon": "&#xe770;",
+    "href": "",
+    "spread": false,
+    "children": [
+      {
+        "title": "客户管理",
+        "icon": "&#xe66f;",
+        "href": "client/clienttList.html",
+        "spread": false
+      }
+    ]
+  },
+
+  {
+    "title": "产品列表",
+    "icon": "&#xe62e;",
+    "href": "",
+    "spread": false,
+    "children": [
+      {
+        "title": "产品管理",
+        "icon": "&#xe636;",
+        "href": "page/employee/employeeList.html",
+        "spread": false
+      }, {
+        "title": "订单管理",
+        "icon": "&#xe657;",
+        "href": "page/employee/employeeList.html",
+        "spread": false
+      }
+    ]
+  }
+]

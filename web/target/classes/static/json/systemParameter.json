@@ -1,0 +1,16 @@
+{
+  "systemName": "PIGS-SHOP后台管理系统",
+  "version": "v1.0.1",
+  "author": "猪农",
+  "homePage": "page/index.html",
+  "server": "windows",
+  "mysql": "5.72",
+  "mongoDB": "4.2.2",
+  "jdk": "1.8",
+  "redis": "5.0.5",
+  "userRights": "总管理员",
+  "description": "一个不会养猪的猪农!!",
+  "powerby": "copyright @2019 PIGS",
+  "record": "京ICP备14040xxx号-1",
+  "keywords": "PIGS-SHOP，猪农，商城，购物"
+}

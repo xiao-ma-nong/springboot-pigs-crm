@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pigs.springbootpigscrm.mapper.EmployeeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.pigs.springbootpigscrm.entity.Employee">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="password" property="password"/>
+        <result column="sex" property="sex"/>
+        <result column="phone" property="phone"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="state" property="state"/>
+        <result column="salt" property="salt"/>
+        <result column="image" property="image"/>
+
+        <!-- 权限表映射 -->
+        <collection property="permission" javaType="com.pigs.springbootpigscrm.entity.Permission">
+            <id column="id" property="id"/>
+            <result column="permission" property="permission"/>
+            <result column="url" property="url"/>
+        </collection>
+
+        <!-- 角色 表映射 role-->
+        <collection property="role" javaType="com.pigs.springbootpigscrm.entity.Role">
+            <id column="id" property="id"/>
+            <result column="role" property="role"/>
+        </collection>
+
+    </resultMap>
+
+
+    <!--  用户登录 ，查询信息..  -->
+    <select id="queryEmployeeInfo" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select employee.name,employee.image,employee.salt,role.role from employee
+           left join employee_role_ref on employee_role_ref.employee_id=employee.id
+            left join role on employee_role_ref.role_id=role.id
+            left join permission_role_ref on permission_role_ref.role_id=role.id
+            left join permission on permission_role_ref.permission_id=permission.id
+        where  employee.name=#{employeeName}
+    </select>
+
+    <!--  查询菜单 权限  -->
+    <select id="queryNavs" parameterType="java.lang.String"
+            resultType="com.pigs.springbootpigscrm.entity.vo.NameRolePermissionVo">
+            select distinct permission.url,permission.icon,permission.name from employee
+            left join employee_role_ref on employee_role_ref.employee_id=employee.id
+            left join role on employee_role_ref.role_id=role.id
+            left join department_role_ref on department_role_ref.role_id=role.id
+            left join permission_role_ref on permission_role_ref.role_id=role.id
+            left join permission on permission_role_ref.permission_id=permission.id
+            left join department on department_role_ref.department_id=department.id
+            where  employee.name=#{employeeName}
+    </select>
+
+    <!--  查询 全部员工  -->
+    <select id="queryEmployeeList" parameterType="java.util.Map"
+            resultType="com.pigs.springbootpigscrm.entity.vo.QueryEmployeeListVo">
+
+        select
+        employee.id,employee.name,employee.sex,employee.image,employee.phone,employee.create_time,employee.update_time,employee.state,role.role,department.department_name
+        from employee
+        left join employee_role_ref on employee_role_ref.employee_id=employee.id
+        left join role on employee_role_ref.role_id=role.id
+        left join department_role_ref on department_role_ref.role_id=role.id
+        left join permission_role_ref on permission_role_ref.role_id=role.id
+        left join permission on permission_role_ref.permission_id=permission.id
+        left join department on department_role_ref.department_id=department.id
+        group by employee.id
+        <where>
+            <if test="map.employeeId!=null&amp;&amp;map.employeeId!=&quot;&quot;">
+                employee.id=#{map.employeeId}
+            </if>
+        </where>
+
+    </select>
+
+
+</mapper>
